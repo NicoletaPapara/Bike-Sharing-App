@@ -1,19 +1,19 @@
 package com.app.bikesharing.controller;
 
 import com.app.bikesharing.model.User;
-import com.app.bikesharing.service.RegisterService;
+import com.app.bikesharing.service.RegistrationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController//RestController allows will return a JSON string for a possible web API
-public class RegisterController {
+public class RegistrationController {
 
 
     //Autowired means that this field needs dependency injection
     @Autowired
-    private RegisterService registerService;
+    private RegistrationService registerService;
 
 
     /*
@@ -41,7 +41,7 @@ public class RegisterController {
     @RequestMapping("/registeredusers/{id}")
     public User getOneRegisteredUser(@PathVariable int id){
 
-        return registerService.getOneRegisteredUserById(id);
+        return registerService.findRegisteredUserById(id);
     }
 
     /*
