@@ -1,6 +1,7 @@
 package com.app.bikesharing.service;
 
 import com.app.bikesharing.dao.RegistrationDAO;
+import com.app.bikesharing.dto.RegistrationDTO;
 import com.app.bikesharing.model.User;
 import com.app.bikesharing.model.UserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,10 +53,16 @@ public class RegistrationService {
 
     }
 
-    public List<User> getAllRegisteredUsers() {
-       List<User> users=new ArrayList<>();
-               registrationDAO.findAll()
-                       .forEach(users::add);
+    public List<RegistrationDTO> getAllRegisteredUsers() {
+       List<RegistrationDTO> users=new ArrayList<>();
+
+       //here query the database once it is created get the dao and put it into the dto!!!
+       RegistrationDTO newUser=new RegistrationDTO();
+
+
+       users.add(newUser);
+
+
         return users;
     }
 

@@ -1,8 +1,10 @@
 package com.app.bikesharing.controller;
 
+import com.app.bikesharing.dto.RegistrationDTO;
 import com.app.bikesharing.model.User;
 import com.app.bikesharing.service.RegistrationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,8 +15,19 @@ public class RegistrationController {
 
     //Autowired means that this field needs dependency injection
     @Autowired
-    private RegistrationService registerService;
+    private RegistrationService registrationService;
 
+    @GetMapping(value = "/")
+    public String home(Model model) {
+
+        System.out.println(registrationService);
+
+        List<RegistrationDTO> users = registrationService.getAllRegisteredUsers();
+
+        model.addAttribute("users", users);
+
+        return "listUsers";
+    }
 
     /*
     Show all registered users.
@@ -24,10 +37,10 @@ public class RegistrationController {
      */
 
     @RequestMapping("/registeredusers")
-    public List<User> getAllUsers(){
+    public List<RegistrationDTO> getAllUsers(){
 
 
-        return registerService.getAllRegisteredUsers();
+        return registrationService.getAllRegisteredUsers();
 
     }
 
@@ -41,7 +54,7 @@ public class RegistrationController {
     @RequestMapping("/registeredusers/{id}")
     public User getOneRegisteredUser(@PathVariable int id){
 
-        return registerService.findRegisteredUserById(id);
+        return registrationService.findRegisteredUserById(id);
     }
 
     /*
@@ -62,21 +75,21 @@ public class RegistrationController {
 
     public void registerNewUser(@RequestBody User user) {
 
-       registerService.registerNewUser(user);
+       registrationService.registerNewUser(user);
 
     }
 
     @RequestMapping(method = RequestMethod.PUT, value="/registeredusers/{id}")
     public void updateRegisteredUser(@RequestBody User user, @PathVariable int id) {
 
-        registerService.updateRegisteredUser(id, user);
+        registrationService.updateRegisteredUser(id, user);
 
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value="/registeredusers/{id}")
     public void unregisterUser(@PathVariable int id) {
 
-        registerService.unregisterUser(id);
+        registrationService.unregisterUser(id);
 
     }
 
