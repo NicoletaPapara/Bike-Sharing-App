@@ -1,0 +1,41 @@
+
+
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+  <head>
+    <link rel="stylesheet" type="text/css" href="addBike.css">
+  </head>
+  <body>
+
+   <div>
+       <h1> Add a bike </h1>
+       <!--    action="#" -->
+       <form th:action="@{/add}" method="post">
+           <label>Select type<select name="type" id="type">
+               <option value = "MOUNTAIN"> Mountain bike </option>
+               <option value = "ROAD"> Road bike </option>
+               <option value = "ELECTRIC"> Electric bike </option>
+           </select>
+           </label>
+       </br>
+           <label>Select size<select name="size" id="size">
+               <option value = "CHILD"> Child</option>
+               <option value = "FEMALE"> Female</option>
+               <option value = "MALE"> Male</option>
+           </select>
+           </label>
+       </br>
+           <!--        datetime-local => LocalDateTime -->
+           <!--        date => Date -->
+           <label>Select price per day<input type="number" name="price" id="price"/></label>
+           <input type="submit" value="Add"/>
+       </form>
+   </div>
+
+<h2>Upload Image : </h2>
+  <input type="file"  multiple = "false" accept = "image/*" id = "image" />
+
+
+<input type = "button" value = "Add Bike" id = "add" value = "add" onclick = "addBike()"/>
+</body>
+  
+</html>
