@@ -7,7 +7,8 @@ import lombok.Setter;
 @Getter
 public class Bike {
     private int id;
-    private int image;
+    private int ownerId;
+
     private BikeType type;
     private Size size;
     private double price;
