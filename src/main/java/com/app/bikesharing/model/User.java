@@ -3,9 +3,8 @@ package com.app.bikesharing.model;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
+import java.util.Set;
 
 
 @Getter
@@ -18,23 +17,48 @@ import javax.persistence.OneToOne;
  * the annotation @Entity to the class and each instance becomes a row in the DB
  */
 
-@Entity
+@Entity//The annotation makes a table out of this class
+@Table(name="user")
 public class User {
 
     @Id//maps User id with DB table ID
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="user_id")
     private int id;
 
-    private int age;
+    @Column(name= "first_name")
     private String firstName;
+
+    @Column(name = "last_name")
     private String lastName;
-    private String cnp;
 
-    @OneToOne// Each user maps to exactly one userDetailsObject
-    private UserDetails userDetails;
-
-    private double rating;
+    @Column(name = "email")
     private String email;
+
+    @Column(name = "password")
     private String password;
+
+    @Column(name = "status")
+    private String status;
+
+    @ManyToMany(cascade=CascadeType.ALL)
+    @JoinTable(name="user_role", joinColumns=@JoinColumn(name="user_id"),
+            inverseJoinColumns =@JoinColumn(name= "role_id"))
+    private Set<Role> roles;
+
+
+//    private int age;
+//
+//    private String cnp;
+//
+//
+//    //private UserDetails userDetails;
+//
+//    private double rating;
+
+
+
+
 
 
 }
