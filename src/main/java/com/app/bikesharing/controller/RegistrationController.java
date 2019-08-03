@@ -8,25 +8,20 @@ import org.springframework.web.servlet.ModelAndView;
 
 //import com.app.bikesharing.service.RegistrationService;
 
-@Controller(value="/")
+@Controller(value = "/")
 public class RegistrationController {
-
 
 
 //    @Autowired//Autowired means inject bean called registrationService
 //    private RegistrationService registrationService;
 
     @GetMapping(value = {"/register"})
-    public ModelAndView register (Model model) {
+    public ModelAndView register(Model model) {
 
-        ModelAndView modelAndView=new ModelAndView();
-
-        User user=new User();
-
+        ModelAndView modelAndView = new ModelAndView();
+        User user = new User();
         modelAndView.addObject("user", user);
-
         modelAndView.setViewName("register");//resources/template/register.html
-
         return modelAndView;
     }
 
