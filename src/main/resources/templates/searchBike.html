@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Search Bike</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+</head>
+<body>
+<h1>Search for a bike:</h1>
+
+
+<form th:action="@{/searchBike}" th:object="${bikeOrderDto}" method="post">
+    Type:
+    <select th:field="*{type}">
+        <option th:each="type : ${T(com.app.bikesharing.model.BikeType).values()}" th:value="${type}"
+                th:utext="${type.description}">
+
+        </option>
+    </select>
+    <br><br>
+    Size:
+    <select th:field="*{size}">
+        <option th:each="size : ${T(com.app.bikesharing.model.Size).values()}" th:value="${size}"
+            th:utext="${size.description}">
+        </option>
+    </select>
+    <br><br>
+    From:
+    <input type="date" th:field="*{startDate}" />
+    <br><br>
+    To:
+    <input type="date" th:field="*{endDate}"/>
+    <br><br>
+    <input type="submit" value="Submit" />
+
+</form>
+</body>
+
+</body>
+</html>
