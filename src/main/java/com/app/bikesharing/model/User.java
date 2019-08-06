@@ -4,11 +4,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Set;
-
-
-@Getter
-@Setter
 
 /***
  * The model class is what needs to be mapped to a database.
@@ -16,17 +11,18 @@ import java.util.Set;
  * Each field in the topic class is actually a column in the DB. We add
  * the annotation @Entity to the class and each instance becomes a row in the DB
  */
-
+@Getter
+@Setter
 @Entity//The annotation makes a table out of this class
-@Table(name="user")
+@Table(name = "user")
 public class User {
 
     @Id//maps User id with DB table ID
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="user_id")
+    @Column(name = "user_id")
     private int id;
 
-    @Column(name= "first_name")
+    @Column(name = "first_name")
     private String firstName;
 
     @Column(name = "last_name")
@@ -41,10 +37,10 @@ public class User {
     @Column(name = "status")
     private String status;
 
-    @ManyToMany(cascade=CascadeType.ALL)
-    @JoinTable(name="user_role", joinColumns=@JoinColumn(name="user_id"),
-            inverseJoinColumns =@JoinColumn(name= "role_id"))
-    private Set<Role> roles;
+//    @ManyToMany(cascade = CascadeType.ALL)
+//    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"),
+//            inverseJoinColumns = @JoinColumn(name = "role_id"))
+//    private Set<Role> roles;
 
 
 //    private int age;
@@ -55,10 +51,6 @@ public class User {
 //    //private UserDetails userDetails;
 //
 //    private double rating;
-
-
-
-
 
 
 }

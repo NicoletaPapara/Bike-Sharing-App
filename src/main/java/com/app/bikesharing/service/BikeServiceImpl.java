@@ -9,12 +9,11 @@ import org.springframework.stereotype.Service;
 public class BikeServiceImpl implements BikeService {
 
     @Autowired
-   private AddBikeDAO addBikeDAO;
+    private AddBikeDAO addBikeDAO;
 
-   public BikeServiceImpl (AddBikeDAO addBikeDAO){
-       this.addBikeDAO = addBikeDAO;
-   }
-
+    public BikeServiceImpl(AddBikeDAO addBikeDAO) {
+        this.addBikeDAO = addBikeDAO;
+    }
 
 
     @Override
