@@ -2,10 +2,12 @@ package com.app.bikesharing.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.validator.constraints.Length;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
+import java.util.Set;
 
 
 @Getter
@@ -18,23 +20,44 @@ import javax.persistence.OneToOne;
  * the annotation @Entity to the class and each instance becomes a row in the DB
  */
 
-@Entity
+@Entity//The annotation makes a table out of this class
+@Table(name="user")
 public class User {
 
     @Id//maps User id with DB table ID
+    @GeneratedValue //(strategy = GenerationType.IDENTITY)//we want MySQL to generate the id. If the GenerationType is not specified we get a server error
+    @Column(name="user_id")
     private int id;
 
-    private int age;
+    @NotNull(message= "First name cannot be omitted.")//Validation constraints annotation
+    @Column(name= "first_name")//Mapping to DB
     private String firstName;
+
+    @NotNull(message= "Last name cannot be omitted.")
+    @Column(name = "last_name")
     private String lastName;
-    private String cnp;
 
-    @OneToOne// Each user maps to exactly one userDetailsObject
-    private UserDetails userDetails;
-
-    private double rating;
+    @NotNull(message= "Email cannot be omitted.")
+    @Email(message = "Invalid email.")
+    @Column(name = "email")
     private String email;
+
+    @NotNull(message= "User details cannot be omitted.")
+    @Column(name = "userdetails")
+    private String userdetails;
+
+    @NotNull(message= "Password cannot be omitted.")
+    @Length(min=4, message = "Minimum length of password is FOUR characters.")
+    @Column(name = "password")
     private String password;
+
+    @Column(name = "status")
+    private String status;
+
+    @ManyToMany(cascade=CascadeType.ALL)
+    @JoinTable(name="user_role", joinColumns=@JoinColumn(name="user_id"),
+            inverseJoinColumns =@JoinColumn(name= "role_id"))
+    private Set<Role> roles;
 
 
 }

@@ -3,16 +3,23 @@ package com.app.bikesharing.model;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 
 @Setter
 @Getter
+@Entity
+@Table(name = "order_history")
 public class Order {
-    private Bike bike;
-    private User owner;
-    private User renter;
-    private int id;
-    private LocalDateTime startDate;
-    private LocalDateTime endDate;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
+    private int bikeId;
+    private int userId;
+    @NotNull
+    private LocalDate startDate;
+    @NotNull
+    private LocalDate endDate;
 }

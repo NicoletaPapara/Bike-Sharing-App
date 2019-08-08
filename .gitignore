@@ -14,10 +14,11 @@ target/
 .sts4-cache
 
 ### IntelliJ IDEA ###
-.idea
+*.idea
 *.iws
 *.iml
 *.ipr
+/.idea
 
 ### NetBeans ###
 /nbproject/private/
@@ -29,3 +30,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+#Ignore app prop to avoid database conflicts
+.application.properties
