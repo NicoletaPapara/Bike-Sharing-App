@@ -1,6 +1,5 @@
 package com.app.bikesharing.dto;
 
-import com.app.bikesharing.model.UserDetails;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
@@ -12,7 +11,7 @@ public class RegistrationDTO {
     private String firstName;
     private String lastName;
     private String cnp;
-    private UserDetails userDetails;
+    private String userDetails;
     private double rating;
     private String email;
     private String password;

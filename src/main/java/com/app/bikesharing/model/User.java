@@ -2,8 +2,11 @@ package com.app.bikesharing.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
 import java.util.Set;
 
 
@@ -22,19 +25,29 @@ import java.util.Set;
 public class User {
 
     @Id//maps User id with DB table ID
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue //(strategy = GenerationType.IDENTITY)//we want MySQL to generate the id. If the GenerationType is not specified we get a server error
     @Column(name="user_id")
     private int id;
 
-    @Column(name= "first_name")
+    @NotNull(message= "First name cannot be omitted.")//Validation constraints annotation
+    @Column(name= "first_name")//Mapping to DB
     private String firstName;
 
+    @NotNull(message= "Last name cannot be omitted.")
     @Column(name = "last_name")
     private String lastName;
 
+    @NotNull(message= "Email cannot be omitted.")
+    @Email(message = "Invalid email.")
     @Column(name = "email")
     private String email;
 
+    @NotNull(message= "User details cannot be omitted.")
+    @Column(name = "userdetails")
+    private String userdetails;
+
+    @NotNull(message= "Password cannot be omitted.")
+    @Length(min=4, message = "Minimum length of password is FOUR characters.")
     @Column(name = "password")
     private String password;
 
@@ -45,20 +58,6 @@ public class User {
     @JoinTable(name="user_role", joinColumns=@JoinColumn(name="user_id"),
             inverseJoinColumns =@JoinColumn(name= "role_id"))
     private Set<Role> roles;
-
-
-//    private int age;
-//
-//    private String cnp;
-//
-//
-//    //private UserDetails userDetails;
-//
-//    private double rating;
-
-
-
-
 
 
 }
