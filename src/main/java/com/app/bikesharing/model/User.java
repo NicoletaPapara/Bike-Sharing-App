@@ -24,6 +24,7 @@ import java.util.Set;
 @Table(name="user")
 public class User {
 
+
     @Id//maps User id with DB table ID
     @GeneratedValue //(strategy = GenerationType.IDENTITY)//we want MySQL to generate the id. If the GenerationType is not specified we get a server error
     @Column(name="user_id")
@@ -53,6 +54,9 @@ public class User {
 
     @Column(name = "status")
     private String status;
+
+    @Column(name = "rating")
+    public int rating;
 
     @ManyToMany(cascade=CascadeType.ALL)
     @JoinTable(name="user_role", joinColumns=@JoinColumn(name="user_id"),
