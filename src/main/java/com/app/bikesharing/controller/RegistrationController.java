@@ -59,6 +59,7 @@ public class RegistrationController {
 
         } else {
             //If there are no binding errors, save the new User.
+            user.setRating(5);
             registrationService.saveUser(user);
 
             modelAndView.addObject("successMessage", "User has been successfully registered.");
