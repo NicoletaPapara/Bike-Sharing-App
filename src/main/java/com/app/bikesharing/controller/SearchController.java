@@ -2,6 +2,7 @@ package com.app.bikesharing.controller;
 
 import com.app.bikesharing.dto.BikeOrderDto;
 import com.app.bikesharing.exceptions.InvalidDatesException;
+import com.app.bikesharing.exceptions.NoBikesFoundException;
 import com.app.bikesharing.model.Bike;
 import com.app.bikesharing.service.SearchService;
 import org.apache.log4j.Logger;
@@ -18,7 +19,7 @@ import java.util.List;
 public class SearchController {
 
     private List<Bike> bikes;
-    Logger logger =Logger.getLogger("SearchController");
+    private Logger logger = Logger.getLogger("SearchController");
 
     @Autowired
     private SearchService searchService;
@@ -36,8 +37,10 @@ public class SearchController {
             bikes = searchService.findAvailableBikes(bikeOrderDto);
         } catch (InvalidDatesException e) {
             logger.error(e.getLocalizedMessage() + ":" + e.getCode());
+        } catch (NoBikesFoundException e) {
+            logger.error(e.getLocalizedMessage() + ":" + e.getCode());
         }
-         model.addAttribute("bikes", bikes);
+        model.addAttribute("bikes", bikes);
         return "listBikes";
     }
 

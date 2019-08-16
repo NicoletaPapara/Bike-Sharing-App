@@ -1,9 +1,10 @@
 package com.app.bikesharing.service;
 
-import com.app.bikesharing.dao.BikeRepository;
+import com.app.bikesharing.dao.AddBikeDAO;
 import com.app.bikesharing.dao.OrderRepository;
 import com.app.bikesharing.dto.BikeOrderDto;
 import com.app.bikesharing.exceptions.InvalidDatesException;
+import com.app.bikesharing.exceptions.NoBikesFoundException;
 import com.app.bikesharing.model.Bike;
 import com.app.bikesharing.model.Order;
 import org.apache.log4j.Logger;
@@ -17,6 +18,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static com.app.bikesharing.exceptions.Codes.INVALID_DATES;
+import static com.app.bikesharing.exceptions.Codes.NO_BIKES;
 
 @Service
 public class SearchServiceImpl implements SearchService {
@@ -24,7 +26,7 @@ public class SearchServiceImpl implements SearchService {
     private Logger logger = Logger.getLogger("SearchServiceImpl");
 
     @Autowired
-    private BikeRepository bikeRepository;
+    private AddBikeDAO bikeRepository;
 
     @Autowired
     private OrderRepository orderRepository;
@@ -33,14 +35,14 @@ public class SearchServiceImpl implements SearchService {
     private List<Order> orders;
 
 
-    public SearchServiceImpl(BikeRepository bikeRepository, OrderRepository orderRepository){
+    public SearchServiceImpl(AddBikeDAO bikeRepository, OrderRepository orderRepository){
         this.bikeRepository = bikeRepository;
         this.orderRepository = orderRepository;
     }
 
 
     @Override
-    public List<Bike> findAvailableBikes(BikeOrderDto bikeOrderDto) throws InvalidDatesException {
+    public List<Bike> findAvailableBikes(BikeOrderDto bikeOrderDto) throws InvalidDatesException, NoBikesFoundException {
 
         LocalDate startDate = convertToLocalDate(bikeOrderDto.getStartDate());
         LocalDate endDate = convertToLocalDate(bikeOrderDto.getEndDate());
@@ -49,10 +51,15 @@ public class SearchServiceImpl implements SearchService {
             throw new InvalidDatesException("End date cannot be before start date",INVALID_DATES);
         }
 
+        if(bikeRepository.findByTypeAndSize(bikeOrderDto.getType(), bikeOrderDto.getSize()) == null) {
+            throw new NoBikesFoundException("Could not find any bike of selected type and size", NO_BIKES);
+        }
 
-        bikes = bikeRepository.findByTypeAndSize(bikeOrderDto.getType(), bikeOrderDto.getSize())
-                .stream()
-                .filter(bike -> isAvailable(bike, startDate, endDate)== true).collect(Collectors.toList());
+
+        bikes = bikeRepository.findByTypeAndSize(bikeOrderDto.getType(), bikeOrderDto.getSize());
+        bikes = bikes.stream()
+                .filter(bike -> isAvailable(bike, startDate, endDate))
+                .collect(Collectors.toList());
 
         return bikes;
     }
