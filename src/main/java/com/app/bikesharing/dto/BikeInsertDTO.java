@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
 
 @Data
 @Builder
@@ -13,9 +14,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class BikeInsertDTO {
 
-    private int ownerID;
-    private BikeType bikeType;
+    private int userId;
+    private BikeType type;
     private Size size;
     private double price;
-
+    private MultipartFile image;
 }
