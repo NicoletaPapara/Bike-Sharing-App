@@ -50,11 +50,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/css/**",
                         "/img/**",
                         "/webjars/**").permitAll()
-//                .antMatchers("/user/**").hasRole("ADMIN")
+                .antMatchers("/register").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/login")
+
                 .defaultSuccessUrl("/home")
                 .permitAll()
                 .and()

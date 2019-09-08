@@ -10,8 +10,7 @@ import java.util.List;
 @Repository
 public interface AddBikeDAO extends CrudRepository<Bike, Integer>, JpaRepository<Bike, Integer> {
 
-//    User findByEmail(String email);
     List<Bike> findByUserId(int userId);
-
+    Bike deleteById(int id);
 
 }

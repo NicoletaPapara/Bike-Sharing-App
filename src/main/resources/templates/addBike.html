@@ -14,13 +14,12 @@
 
 <div style="background-color: #FDF5E6; height: 50px;">
     <a href="/home">Home</a>
-    <a href="/editBike">Edit a bike</a>
 </div>
 <div class="container-fluid" style="margin-top: 30px;">
 
     <div class="row col-lg-4 col-lg-offset-4" style="margin-top: 40px; background-color: #B0C4DE; padding: 20px; border: solid 1px #ddd;">
         <h1> Add a bike </h1>
-        <!--    action="#" -->
+
         <form th:action="@{/addBike}" method="post" enctype="multipart/form-data">
             <label>Select type</br><select style="margin-right: 100px;" name="type" id="type">
                 <option value="MOUNTAIN"> Mountain bike</option>
@@ -40,11 +39,9 @@
                                               id="price" required/></label>
 
             </br>
-            <input type="text" name="userId" id="userId" required>
-            <h2>Upload Image : </h2>
-            <!--<img alt="Image" th:src="@{image/userprofile}" width="250" height="250"/>-->
 
-            <!--<input type="file" multiple="false" accept="image/*" name="image" id="image"/>-->
+            <h2>Upload Image : </h2>
+
             <input type="file" multiple="false" accept="image/*" name="image" id="image" onchange="readURL(this);" required/>
             <img id="blah" alt="your image"/>
             <script th:inline="javascript">

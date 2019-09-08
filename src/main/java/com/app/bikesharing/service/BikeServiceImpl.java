@@ -108,10 +108,11 @@ public class BikeServiceImpl implements BikeService {
         Bike bike = transformBikeUpdateDTOIntoBike(bikeUpdateDTO);
 
         addBikeDAO.save(bike);
+
     }
 
     @Override
     public void deleteBike(int id) {
-
+        addBikeDAO.deleteById(id);
     }
 }
