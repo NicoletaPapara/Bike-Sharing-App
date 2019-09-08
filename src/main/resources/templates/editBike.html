@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>EditBike</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<body style="background-color: 	#ADD8E6;">
+
+<div style="background-color: #FDF5E6; height: 50px;">
+    <a href="/home">Home</a>
+</div>
+<div class="container-fluid" style="margin-top: 30px;">
+
+    <div class="row col-lg-4 col-lg-offset-4" style="margin-top: 40px; background-color: #B0C4DE; padding: 20px; border: solid 1px #ddd;">
+        <h1> Edit bike </h1>
+        <!--    action="#" -->
+        <form action = "/listPersonalBikes" th:action="@{/editBike}" method="post" enctype="multipart/form-data">
+            <label>Type</br><select style="margin-right: 100px;" name="type" id="type">
+                <option value="MOUNTAIN"> Mountain bike</option>
+                <option value="ROAD"> Road bike</option>
+                <option value="ELECTRIC"> Electric bike</option>
+            </select>
+            </label>
+            </br>
+            <label>Select size</br><select style="margin-right: 100px;" name="size" id="size">
+                <option value="CHILD"> Child</option>
+                <option value="FEMALE"> Female</option>
+                <option value="MALE"> Male</option>
+            </select>
+            </label>
+            </br>
+            <label>Select price per day</br><input style="margin-right: 100px;" type="number" name="price"
+                                                   id="price" required/></label>
+
+            </br>
+            <!--<input type="text" name="userId" id="userId">-->
+            </br>
+            <!--<input type="text" name="id" id="id">-->
+            <input type="hidden" th:value="${bike.id}" name="id">
+            <h2>Upload Image : </h2>
+            <!--<img alt="Image" th:src="@{image/userprofile}" width="250" height="250"/>-->
+
+            <!--<input type="file" multiple="false" accept="image/*" name="image" id="image"/>-->
+            <input type="file" multiple="false" accept="image/*" name="image" id="image" onchange="readURL(this);" required/>
+            <img id="showImage" height="200px" width="200px" alt="your image"/>
+            <script th:inline="javascript">
+
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                 var image = document.getElementById('showImage');
+                               image.src= e.target.result;
+                             <!--image.height = 200px;-->
+                            <!--image.width = 200px;-->
+                };
+                reader.readAsDataURL(input.files[0]);
+
+            }
+        }
+
+
+            </script>
+            </br>
+            <input type="submit" value="Edit Bike"/>
+        </form>
+    </div>
+
+
+</div>
+
+
+</body>
+</html>
