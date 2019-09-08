@@ -1,10 +1,19 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <meta charset="ISO-8859-1">
     <title>Bike Sharing App</title>
 </head>
 <body>
 Hello to our wonderful bike sharing app, where you can register a bike, rent it out or sublease it!
+
+<form action="#" th:action="@{/home}"  method="post">
+
+    <a href="/bikeManagement">Bike management</a>
+    <a href="/searchBike">Search for a bike</a>
+
+</form>
+
 </body>
 </html>
