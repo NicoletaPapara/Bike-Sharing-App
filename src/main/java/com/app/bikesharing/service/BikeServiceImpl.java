@@ -1,22 +1,27 @@
 package com.app.bikesharing.service;
 
 import com.app.bikesharing.dao.AddBikeDAO;
+import com.app.bikesharing.dao.UserDAO;
 import com.app.bikesharing.dto.BikeInsertDTO;
 import com.app.bikesharing.dto.BikeUpdateDTO;
 import com.app.bikesharing.model.Bike;
 import com.app.bikesharing.model.BikeType;
 import com.app.bikesharing.model.Size;
+import com.app.bikesharing.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.List;
 
 @Service
 public class BikeServiceImpl implements BikeService {
 
     @Autowired
     private AddBikeDAO addBikeDAO;
+    @Autowired
+    private UserDAO userDAO;
 
     public BikeServiceImpl(AddBikeDAO addBikeDAO) {
         this.addBikeDAO = addBikeDAO;
@@ -87,10 +92,14 @@ public class BikeServiceImpl implements BikeService {
         addBikeDAO.save(bike);
 
     }
-
     @Override
-    public void findBike(int id) {
-        addBikeDAO.findById(id);
+    public User findUserByEmail (String email){
+        return userDAO.findByEmail(email);
+
+    }
+    @Override
+    public List<Bike> findBike(int id) {
+        return addBikeDAO.findByUserId(id);
     }
 
     @Override

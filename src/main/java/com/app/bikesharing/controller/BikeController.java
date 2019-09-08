@@ -3,6 +3,9 @@ package com.app.bikesharing.controller;
 
 import com.app.bikesharing.dto.BikeInsertDTO;
 import com.app.bikesharing.dto.BikeUpdateDTO;
+import com.app.bikesharing.dto.UserInfoDTO;
+import com.app.bikesharing.model.Bike;
+import com.app.bikesharing.model.User;
 import com.app.bikesharing.service.BikeService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +15,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 @Log4j2
 @Controller
@@ -62,6 +67,26 @@ public class BikeController {
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("editBike");
+
+        return modelAndView;
+    }
+    @GetMapping(value = "/userEmail")
+    public ModelAndView userInfo(@ModelAttribute UserInfoDTO userInfoDTO){
+
+        ModelAndView modelAndView = new ModelAndView();
+
+        modelAndView.addObject("userInfo",userInfoDTO);
+
+        return modelAndView;
+    }
+    @PostMapping(value = "/userEmail")
+    public ModelAndView postUserInfo(@ModelAttribute UserInfoDTO userInfoDTO){
+
+       User user = bikeService.findUserByEmail(userInfoDTO.getEmail());
+       List<Bike> bike = bikeService.findBike(user.getId());
+        ModelAndView modelAndView = new ModelAndView();
+
+        modelAndView.addObject("userInfo", bike);
 
         return modelAndView;
     }
