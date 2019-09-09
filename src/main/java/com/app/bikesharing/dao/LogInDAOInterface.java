@@ -8,4 +8,5 @@ import org.springframework.stereotype.Repository;
 public interface LogInDAOInterface extends JpaRepository<User, Integer> {
 
     User findByEmail(String email);
+
 }

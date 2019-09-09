@@ -58,7 +58,7 @@ public class RegistrationController {
 
 
         } else {
-            //If there are no binding errors, save the new User.
+            //If there are no binding error, save the new User.
             user.setRating(5);
             registrationService.saveUser(user);
 
@@ -106,7 +106,7 @@ public class RegistrationController {
 //            //To show the bindingResult on the screen, add the bindingResult into the modelMap
 //            modelMap.addAttribute("bindingResult", bindingResult);
 //        }  else {
-//            //If there are no binding errors, save the new User.
+//            //If there are no binding error, save the new User.
 //            registrationService.saveUser(user);
 //
 //            modelAndView.addObject("successMessage", "User details have been successfully registered.");
@@ -120,12 +120,12 @@ public class RegistrationController {
 //
 //    }
 
-    @GetMapping(value = "/home")
-    public ModelAndView home() {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("home"); // resources/template/home.html
-        return modelAndView;
-    }
+//    @GetMapping(value = "/home")
+//    public ModelAndView home() {
+//        ModelAndView modelAndView = new ModelAndView();
+//        modelAndView.setViewName("home"); // resources/template/home.html
+//        return modelAndView;
+//    }
     /*
     Show all registered users.
     By default RequestMapping generates a GET method.

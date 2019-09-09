@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Setter
@@ -15,8 +16,9 @@ public class Bike {
     private int id;
     private int userId;
     // Blob type file for image
+    @Lob
+    @NotNull(message = "upload image")
     private byte[] image;
-    private int ownerId;
     @Enumerated(EnumType.STRING)
     private BikeType type;
     @Enumerated(EnumType.STRING)
