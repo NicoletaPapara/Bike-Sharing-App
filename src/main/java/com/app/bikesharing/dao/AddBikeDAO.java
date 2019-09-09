@@ -16,5 +16,6 @@ public interface AddBikeDAO extends CrudRepository<Bike, Integer>, JpaRepository
     Bike deleteById(int id);
 
     List<Bike> findByTypeAndSize(BikeType type, Size size);
+    Bike findById(int id);
 
 }

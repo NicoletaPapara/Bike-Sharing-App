@@ -1,7 +1,7 @@
 package com.app.bikesharing.service;
 
 import com.app.bikesharing.dao.AddBikeDAO;
-import com.app.bikesharing.dao.OrderRepository;
+import com.app.bikesharing.dao.OrderDAO;
 import com.app.bikesharing.dto.BikeOrderDto;
 import com.app.bikesharing.exceptions.InvalidDatesException;
 import com.app.bikesharing.exceptions.NoBikesFoundException;
@@ -56,11 +56,11 @@ class SearchServiceImplTest {
     private AddBikeDAO bikeRepository;
 
     @Mock
-    private OrderRepository orderRepository;
+    private OrderDAO orderDAO;
 
     @BeforeEach
     public void setUp() {
-        searchService = new SearchServiceImpl(bikeRepository, orderRepository);
+        searchService = new SearchServiceImpl(bikeRepository, orderDAO);
     }
 
     @Test
@@ -85,7 +85,7 @@ class SearchServiceImplTest {
         BikeOrderDto bikeOrderDto = new BikeOrderDto(BikeType.MOUNTAIN, Size.CHILD, startDate, endDate);
 
         doReturn(bikes).when(bikeRepository).findByTypeAndSize(any(BikeType.class), any(Size.class));
-        doReturn(orders).when(orderRepository).findByBikeId(any(Integer.class));
+        doReturn(orders).when(orderDAO).findByBikeId(any(Integer.class));
 
         List<Bike> result = searchService.findAvailableBikes(bikeOrderDto);
 
@@ -99,7 +99,7 @@ class SearchServiceImplTest {
         BikeOrderDto bikeOrderDto = new BikeOrderDto(BikeType.MOUNTAIN, Size.CHILD, startDate, endDate);
 
         doReturn(bikes).when(bikeRepository).findByTypeAndSize(any(BikeType.class), any(Size.class));
-        doReturn(orders).when(orderRepository).findByBikeId(any(Integer.class));
+        doReturn(orders).when(orderDAO).findByBikeId(any(Integer.class));
 
         List<Bike> result = searchService.findAvailableBikes(bikeOrderDto);
 
@@ -113,8 +113,8 @@ class SearchServiceImplTest {
         BikeOrderDto bikeOrderDto = new BikeOrderDto(BikeType.MOUNTAIN, Size.CHILD, startDate, endDate);
 
         doReturn(bikes1).when(bikeRepository).findByTypeAndSize(any(BikeType.class), any(Size.class));
-        doReturn(orders1).when(orderRepository).findByBikeId(2);
-        doReturn(orders2).when(orderRepository).findByBikeId(3);
+        doReturn(orders1).when(orderDAO).findByBikeId(2);
+        doReturn(orders2).when(orderDAO).findByBikeId(3);
 
         List<Bike> result = searchService.findAvailableBikes(bikeOrderDto);
         Assertions.assertEquals(1, result.size());
@@ -127,8 +127,8 @@ class SearchServiceImplTest {
         BikeOrderDto bikeOrderDto = new BikeOrderDto(BikeType.MOUNTAIN, Size.CHILD, startDate, endDate);
 
         doReturn(bikes1).when(bikeRepository).findByTypeAndSize(any(BikeType.class), any(Size.class));
-        doReturn(orders1).when(orderRepository).findByBikeId(2);
-        doReturn(orders2).when(orderRepository).findByBikeId(3);
+        doReturn(orders1).when(orderDAO).findByBikeId(2);
+        doReturn(orders2).when(orderDAO).findByBikeId(3);
 
         List<Bike> result = searchService.findAvailableBikes(bikeOrderDto);
         Assertions.assertEquals(2, result.size());

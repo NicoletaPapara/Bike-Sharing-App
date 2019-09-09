@@ -30,4 +30,8 @@ public class Bike {
         this.type = type;
         this.size = size;
     }
+
+    public Bike(){
+
+    }
   }

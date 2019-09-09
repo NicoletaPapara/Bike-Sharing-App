@@ -23,6 +23,10 @@ public class Order {
     @NotNull
     private LocalDate endDate;
 
+    public Order(){
+
+    }
+
     public Order(int bikeId, LocalDate startDate, LocalDate endDate) {
         this.bikeId = bikeId;
         this.startDate = startDate;

@@ -10,9 +10,9 @@ import java.util.Date;
 public class BikeOrderDto {
     private BikeType type;
     private Size size;
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date startDate;
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date endDate;
 
     public BikeOrderDto(BikeType type, Size size, Date startDate, Date endDate) {

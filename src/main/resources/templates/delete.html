@@ -22,7 +22,7 @@
             <td th:text="${bike.type}"  >Text../ </td>
             <td th:text="${bike.size}" >Text../ </td>
             <td  th:text="${bike.price}" >Text../ </td>
-            <td  th:img="${bike.image}" >Text../ </td>
+            <td><img alt="Image" th:src="@{'/image/' + ${bike.id}}" width="150" height="150"></td>
             <td>
                 <input type="hidden" th:value="${bike.id}" name="id">
                 <input type="hidden" th:value="${bike.userId}" name="userId">
