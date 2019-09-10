@@ -4,6 +4,7 @@ import com.app.bikesharing.dao.AddBikeDAO;
 import com.app.bikesharing.dao.OrderDAO;
 import com.app.bikesharing.dto.BikeOrderDto;
 import com.app.bikesharing.exceptions.InvalidDatesException;
+import com.app.bikesharing.exceptions.NoAvailableBikesException;
 import com.app.bikesharing.exceptions.NoBikesFoundException;
 import com.app.bikesharing.model.Bike;
 import com.app.bikesharing.model.BikeType;
@@ -79,7 +80,7 @@ class SearchServiceImplTest {
     }
 
     @Test
-    void shouldReturnListOfBikesWhenDatesAreAvailable() throws ParseException, NoBikesFoundException, InvalidDatesException {
+    void shouldReturnListOfBikesWhenDatesAreAvailable() throws ParseException, NoBikesFoundException, InvalidDatesException, NoAvailableBikesException {
         Date startDate = dateFormatter.parse("07-08-2019");
         Date endDate = dateFormatter.parse("08-08-2019");
         BikeOrderDto bikeOrderDto = new BikeOrderDto(BikeType.MOUNTAIN, Size.CHILD, startDate, endDate);
@@ -93,7 +94,7 @@ class SearchServiceImplTest {
     }
 
     @Test
-    void shouldReturnEmptyListWhenDatesAreNotAvailable() throws ParseException, NoBikesFoundException, InvalidDatesException {
+    void shouldReturnEmptyListWhenDatesAreNotAvailable() throws ParseException, NoBikesFoundException, InvalidDatesException, NoAvailableBikesException {
         Date startDate = dateFormatter.parse("02-08-2019");
         Date endDate = dateFormatter.parse("02-08-2019");
         BikeOrderDto bikeOrderDto = new BikeOrderDto(BikeType.MOUNTAIN, Size.CHILD, startDate, endDate);
@@ -107,7 +108,7 @@ class SearchServiceImplTest {
     }
 
     @Test
-    void shouldReturnAvailableBikesFromAListOfSelectedBikes() throws ParseException, NoBikesFoundException, InvalidDatesException {
+    void shouldReturnAvailableBikesFromAListOfSelectedBikes() throws ParseException, NoBikesFoundException, InvalidDatesException, NoAvailableBikesException {
         Date startDate = dateFormatter.parse("02-08-2019");
         Date endDate = dateFormatter.parse("02-08-2019");
         BikeOrderDto bikeOrderDto = new BikeOrderDto(BikeType.MOUNTAIN, Size.CHILD, startDate, endDate);
@@ -121,7 +122,7 @@ class SearchServiceImplTest {
     }
 
     @Test
-    void shouldReturnAllSelectedBikesWhenAllAreAvailable() throws ParseException, NoBikesFoundException, InvalidDatesException {
+    void shouldReturnAllSelectedBikesWhenAllAreAvailable() throws ParseException, NoBikesFoundException, InvalidDatesException, NoAvailableBikesException {
         Date startDate = dateFormatter.parse("01-09-2019");
         Date endDate = dateFormatter.parse("05-09-2019");
         BikeOrderDto bikeOrderDto = new BikeOrderDto(BikeType.MOUNTAIN, Size.CHILD, startDate, endDate);

@@ -5,6 +5,7 @@ import com.app.bikesharing.dao.OrderDAO;
 import com.app.bikesharing.dto.BikeOrderDto;
 import com.app.bikesharing.dto.OrderDTO;
 import com.app.bikesharing.exceptions.InvalidDatesException;
+import com.app.bikesharing.exceptions.NoAvailableBikesException;
 import com.app.bikesharing.exceptions.NoBikesFoundException;
 import com.app.bikesharing.model.Bike;
 import com.app.bikesharing.model.Order;
@@ -18,8 +19,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.app.bikesharing.exceptions.Codes.INVALID_DATES;
-import static com.app.bikesharing.exceptions.Codes.NO_BIKES;
+import static com.app.bikesharing.exceptions.Codes.*;
 
 @Service
 public class SearchServiceImpl implements SearchService {
@@ -42,7 +42,7 @@ public class SearchServiceImpl implements SearchService {
     }
 
     @Override
-    public List<Bike> findAvailableBikes(BikeOrderDto bikeOrderDto) throws InvalidDatesException, NoBikesFoundException {
+    public List<Bike> findAvailableBikes(BikeOrderDto bikeOrderDto) throws InvalidDatesException, NoBikesFoundException, NoAvailableBikesException {
 
         LocalDate startDate = convertToLocalDate(bikeOrderDto.getStartDate());
         LocalDate endDate = convertToLocalDate(bikeOrderDto.getEndDate());
@@ -61,6 +61,9 @@ public class SearchServiceImpl implements SearchService {
         bikes = bikes.stream()
                 .filter(bike -> isAvailable(bike, startDate, endDate))
                 .collect(Collectors.toList());
+        if(bikes.size() == 0){
+            throw  new NoAvailableBikesException("Could not find any available bike", NO_AVAILABLE_BIKES);
+        }
 
         return bikes;
     }

@@ -5,6 +5,7 @@ import com.app.bikesharing.dao.OrderDAO;
 import com.app.bikesharing.dto.BikeOrderDto;
 import com.app.bikesharing.dto.OrderDTO;
 import com.app.bikesharing.exceptions.InvalidDatesException;
+import com.app.bikesharing.exceptions.NoAvailableBikesException;
 import com.app.bikesharing.exceptions.NoBikesFoundException;
 import com.app.bikesharing.model.Bike;
 import com.app.bikesharing.model.User;
@@ -59,6 +60,10 @@ public class SearchController {
             model.addAttribute("errorMessage", errorMessage);
             logger.error(e.getLocalizedMessage() + ":" + e.getCode());
         } catch (NoBikesFoundException e) {
+            errorMessage = e.getMessage();
+            model.addAttribute("errorMessage", errorMessage);
+            logger.error(e.getLocalizedMessage() + ":" + e.getCode());
+        }catch (NoAvailableBikesException e){
             errorMessage = e.getMessage();
             model.addAttribute("errorMessage", errorMessage);
             logger.error(e.getLocalizedMessage() + ":" + e.getCode());
