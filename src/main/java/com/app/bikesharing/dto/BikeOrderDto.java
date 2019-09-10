@@ -1,5 +1,6 @@
 package com.app.bikesharing.dto;
 
+import com.app.bikesharing.model.Bike;
 import com.app.bikesharing.model.BikeType;
 import com.app.bikesharing.model.Size;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -21,7 +22,13 @@ public class BikeOrderDto {
         this.endDate = endDate;
     }
 
-    public BikeOrderDto() {
+    public BikeOrderDto(Date startDate, Date endDate) {
+        this.startDate = startDate;
+        this.endDate = endDate;
+    }
+
+
+    public BikeOrderDto(){
 
     }
 

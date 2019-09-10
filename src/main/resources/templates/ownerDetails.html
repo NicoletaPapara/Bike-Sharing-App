@@ -6,7 +6,17 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
 </head>
 <body>
-<h1>Owner details</h1>
+<table>
+<tr>
+    <th>Bike owner name:  </th>
+    <th th:text="${owner.firstName}">...!...</th>
+    <th th:text="${owner.lastName}">...!...</th>
+</tr>
+<tr>
+    <th>Contact details: </th>
+    <th colspan="2" th:text="${owner.userdetails}">...!...</th>
+</tr>
+</table>
 
 </body>
 

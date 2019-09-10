@@ -24,4 +24,14 @@ public class Bike {
     @Enumerated(EnumType.STRING)
     private Size size;
     private double price;
+
+    public Bike(int id, BikeType type, Size size) {
+        this.id = id;
+        this.type = type;
+        this.size = size;
+    }
+
+    public Bike(){
+
+    }
   }

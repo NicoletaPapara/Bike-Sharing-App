@@ -6,38 +6,44 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
 </head>
 <body>
-<h1>Available bikes:</h1>
+<h1 th:if="${errorMessage == null}">Available bikes:</h1>
+
 <table>
     <thead>
-    <tr>
-        <th>Id</th>
+    <tr th:if="${errorMessage == null}">
         <th>Type</th>
         <th>Size</th>
         <th>Price</th>
+        <th>Picture</th>
+        <th>Choose bike</th>
     </tr>
     </thead>
     <tbody>
     <tr th:each="bike : ${bikes}">
-        <form action="#" th:action="@{/selectBike}" th:object="${bikeTwo}" method="post">
-        <td th:text="${bike.id}" >Text../ </td>
+        <form action="#" th:action="@{/selectBike}" th:object="${orderDTO}" method="post">
+<!--        <td th:text="${bike.id}" >Text../ </td>-->
         <td th:text="${bike.type}"  >Text../ </td>
         <td th:text="${bike.size}" >Text../ </td>
         <td  th:text="${bike.price}" >Text../ </td>
-        <td>
-            <input type="hidden" th:value="${bike.id}" name="id">
-            <input type="hidden" th:value="${bike.type}" name="type">
-            <input type="hidden" th:value="${bike.size}" name="size">
-            <input type="hidden" th:value="${bike.price}" name="price">
+            <td><img alt="Image" th:src="@{'/image/' + ${bike.id}}" width="150" height="150"></td>
+            <td>
+            <input type="hidden" th:value="${bike.id}" name="bikeId">
+            <input type="hidden" th:value="${#dates.format(startDate, 'yyyy-MM-dd')}" name="startDate">
+            <input type="hidden" th:value="${#dates.format(endDate, 'yyyy-MM-dd')}" name="endDate">
+<!--            <input type="hidden" th:value="${bike.type}" name="type">-->
+<!--            <input type="hidden" th:value="${bike.size}" name="size">-->
+<!--            <input type="hidden" th:value="${bike.price}" name="price">-->
             <input type = "submit" value = "Select"/>
-
-
         </td>
         </form>
      </tr>
 
     </tbody>
 </table>
-
+<div th:if="${errorMessage}" th:utext="${errorMessage}"
+     style="color:red;font-style:italic;">
+    ...
+</div>
 
 </body>
 
