@@ -7,11 +7,16 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
-<body style="background-color: #FFA500;">
-<div style="background-color: #FDF5E6; height: 50px;"></div>
+<body style="background-color: #99A976;">
+
+<div style="background-color: #99A976; height: 200px;">
+	<img src="../static/images/logo2.jpeg" width="200px" height="200px" style="display:block;margin-left:auto; margin-right:auto;"
+		 th:src="@{images/logo2.jpeg}">
+</div>
+
 <div class="container-fluid" style="margin-top: 30px;">
 
-	<div class="row col-lg-4 col-lg-offset-4" style="margin-top: 40px; background-color: #B0C4DE; padding: 20px; border: solid 1px #ddd;">
+	<div class="row col-lg-4 col-lg-offset-4" style="margin-top: 40px; background-color: #D9EAD3; padding: 20px; border: solid 1px #ddd;">
 		<form autocomplete="off" action="#" th:action="@{/register}" th:object="${user}" method="post" class="form-signin" role="form">
 			<h3 class="form-signin-heading">Registration Form</h3>
 			<div class="form-group">

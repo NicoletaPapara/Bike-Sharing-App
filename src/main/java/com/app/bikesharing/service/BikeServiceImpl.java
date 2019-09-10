@@ -115,4 +115,5 @@ public class BikeServiceImpl implements BikeService {
     public void deleteBike(int id) {
         addBikeDAO.deleteById(id);
     }
+
 }
