@@ -15,9 +15,9 @@ public class Bike {
     @GeneratedValue
     private int id;
     private int userId;
-    // Blob type file for image
+    // Blob type file for images
     @Lob
-    @NotNull(message = "upload image")
+    @NotNull(message = "upload images")
     private byte[] image;
     @Enumerated(EnumType.STRING)
     private BikeType type;

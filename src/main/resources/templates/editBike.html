@@ -38,16 +38,11 @@
                                                    id="price" required/></label>
 
             </br>
-            <!--<input type="text" name="userId" id="userId">-->
-            </br>
-            <!--<input type="text" name="id" id="id">-->
             <input type="hidden" th:value="${bike.id}" name="id">
             <h2>Upload Image : </h2>
-            <!--<img alt="Image" th:src="@{image/userprofile}" width="250" height="250"/>-->
 
-            <!--<input type="file" multiple="false" accept="image/*" name="image" id="image"/>-->
             <input type="file" multiple="false" accept="image/*" name="image" id="image" onchange="readURL(this);" required/>
-            <img id="showImage" height="200px" width="200px" alt="your image"/>
+            <img id="showImage" height="100px" width="200px" alt="your image"/>
             <script th:inline="javascript">
 
         function readURL(input) {

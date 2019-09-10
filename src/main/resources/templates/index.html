@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Bike Sharing App</title>
+</head>
+<body th:style="'background:url('+@{images/homePage.png}+')no-repeat;background-size:cover;'">
+
+<form action="#" th:action="@{/}" method="post">
+    <table style="font-size:30px">
+        <th>
+            <img src="../static/images/logo2.jpeg" width="200px" height="200px" style="padding-left:30px"
+                 th:src="@{images/logo2.jpeg}">
+        </th>
+
+
+        <th><a href="/login" style="color: #081203;text-decoration: none;">Login</a>
+            </br>
+            <a href="/register" style="color: #081203;text-decoration: none;">Register</a>
+            </br>
+        </th>
+
+    </table>
+
+
+</form>
+
+
+</body>
+</html>

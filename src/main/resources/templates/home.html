@@ -5,14 +5,19 @@
     <meta charset="ISO-8859-1">
     <title>Bike Sharing App</title>
 </head>
-<body>
-Hello to our wonderful bike sharing app, where you can register a bike, rent it out or sublease it!
 
-<form action="#" th:action="@{/home}"  method="post">
+<body th:style="'background:url('+@{images/homePage2.png}+')no-repeat;background-size:cover;'">
 
-    <a href="/bikeManagement">Bike management</a>
-    <a href="/searchBike">Search for a bike</a>
+<img src="../static/images/logo2.jpeg" width="200px" height="200px" style="padding-left:30px"
+     th:src="@{images/logo2.jpeg}">
+<form action="#" th:action="@{/home}" method="post">
 
+    <div style="padding-top: 180px; padding-left:80px; ">
+        <a th:href="@{/searchBike}" style="font-size:100px;color: white; text-decoration: none;">Search for a bike</a>
+        </br>
+        <a href="/bikeManagement" style="font-size:30px;color: white; text-decoration: none;">Bike management</a>
+
+    </div>
 </form>
 
 </body>
