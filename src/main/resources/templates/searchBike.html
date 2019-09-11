@@ -1,39 +1,61 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8"/>
     <title>Search Bike</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
-<body>
-<h1>Search for a bike:</h1>
+<body style="background-color: 	#99A976;">
+
+<div style="background-color: #99A976; height: 200px;">
+    <img src="../static/images/logo2.jpeg" width="200px" height="200px"
+         style="display:block;margin-left:auto; margin-right:auto;"
+         th:src="@{images/logo2.jpeg}">
+</div>
+<div class="container-fluid">
+
+    <div class="row col-lg-4 col-lg-offset-4"
+         style="margin-top: 20px; background-color: #D9EAD3; padding: 20px; border: solid 1px #ddd;">
+
+        <h1>Search for a bike:</h1>
 
 
-<form th:action="@{/searchBike}" th:object="${bikeOrderDto}" method="post">
-    Type:
-    <select th:field="*{type}">
-        <option th:each="type : ${T(com.app.bikesharing.model.BikeType).values()}" th:value="${type}"
-                th:utext="${type.description}">
+        <form th:action="@{/searchBike}" th:object="${bikeOrderDto}" method="post">
+            <label>Type:</br>
+                <select th:field="*{type}">
+                    <option th:each="type : ${T(com.app.bikesharing.model.BikeType).values()}" th:value="${type}"
+                            th:utext="${type.description}">
 
-        </option>
-    </select>
-    <br><br>
-    Size:
-    <select th:field="*{size}">
-        <option th:each="size : ${T(com.app.bikesharing.model.Size).values()}" th:value="${size}"
-            th:utext="${size.description}">
-        </option>
-    </select>
-    <br><br>
-    From:
-    <input type="date" th:field="*{startDate}" />
-    <br><br>
-    To:
-    <input type="date" th:field="*{endDate}"/>
-    <br><br>
-    <input type="submit" value="Submit" />
+                    </option>
+                </select>
+            </label>
+            </br>
+            <label>Size:</br>
+                <select th:field="*{size}">
+                    <option th:each="size : ${T(com.app.bikesharing.model.Size).values()}" th:value="${size}"
+                            th:utext="${size.description}">
+                    </option>
+                </select>
+            </label>
+            </br>
+            <label>From:</br>
+                <input type="date" th:field="*{startDate}"/>
+            </label>
+            </br>
+            <label>To:</br>
+                <input type="date" th:field="*{endDate}"/>
+            </label>
+            </br>
+            </br>
 
-</form>
+            <input type="submit" value="Submit"/>
+
+        </form>
+    </div>
+
+
+</div>
+
 </body>
 
 </body>

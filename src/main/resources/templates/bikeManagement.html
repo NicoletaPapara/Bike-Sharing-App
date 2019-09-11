@@ -4,21 +4,18 @@
     <meta charset="UTF-8">
     <title>Bike Manager</title>
 </head>
-<body >
-
-
-<form action="/addBike">
-<a href="/addBike" >Add a new bike</a>
-    <input type="submit" value="Add a bike" />
-</form>
-
-<form action="/listPersonalBikes">
-    <input type="submit" value="Edit your bikes" />
-</form>
-
-<form action="/delete">
-    <input type="submit" value="Delete a bike" />
-</form>
+<body th:style="'background:url('+@{images/bikeManagement.png}+')no-repeat;background-size:cover;'">
+<div >
+    <img src="../static/images/logo2.jpeg" width="200px" height="200px" style="padding-left:30px"
+         th:src="@{images/logo2.jpeg}">
+</div>
+<div style="padding-top: 300px; padding-left:80px; ">
+    <a href="/addBike" style="font-size:60px;color: white; text-decoration: none;">Add a new bike</a>
+    </br>
+    <a href="/listPersonalBikes" style="font-size:60px;color: white; text-decoration: none;">Edit a bike</a>
+    </br>
+    <a href="/delete" style="font-size:60px;color: white; text-decoration: none;">Delete a bike</a>
+</div>
 
 </body>
 </html>
