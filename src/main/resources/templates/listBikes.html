@@ -6,8 +6,11 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body style="background-color: 	#99A976;">
-
+<form th:action="@{/logout}" method="POST">
+    <input type="submit" value="Logout" style="float: right;"/>
+</form>
 <div style="background-color: #99A976; height: 200px;">
+
     <img src="../static/images/logo2.jpeg" width="200px" height="200px"
          style="display:block;margin-left:auto; margin-right:auto;"
          th:src="@{images/logo2.jpeg}">
@@ -39,9 +42,6 @@
                         <input type="hidden" th:value="${bike.id}" name="bikeId">
                         <input type="hidden" th:value="${#dates.format(startDate, 'yyyy-MM-dd')}" name="startDate">
                         <input type="hidden" th:value="${#dates.format(endDate, 'yyyy-MM-dd')}" name="endDate">
-                        <!--            <input type="hidden" th:value="${bike.type}" name="type">-->
-                        <!--            <input type="hidden" th:value="${bike.size}" name="size">-->
-                        <!--            <input type="hidden" th:value="${bike.price}" name="price">-->
                         <input type="submit" value="Select"/>
                     </td>
                 </form>
