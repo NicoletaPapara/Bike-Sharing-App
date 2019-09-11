@@ -54,7 +54,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/resources/**",
                         "/webjars/**").permitAll()
                 .antMatchers("/register").permitAll()
-                .antMatchers("/").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -66,56 +65,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .invalidateHttpSession(true)
                 .clearAuthentication(true)
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/login?logout")
+                .logoutSuccessUrl("/")
                 .permitAll()
                 .and()
                 .exceptionHandling()
                 .accessDeniedHandler(accessDeniedHandler);
     }
-//    @Override
-//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.inMemoryAuthentication()
-//                .withUser("user").password(bCryptPasswordEncoder.encode("password")).roles("USER")
-//                .and()
-//                .withUser("manager").password("password").roles("MANAGER");
-//    }
-
-//    @Override
-//    protected void configure(HttpSecurity http) throws Exception {
-//
-//        http.authorizeRequests()
-//                // URLs matching for access rights
-//                .antMatchers("/").permitAll()
-//                .antMatchers("/login").permitAll()
-//                .antMatchers("/register").permitAll()
-//                .antMatchers("/addBike").permitAll()
-//                .antMatchers("/editBike").permitAll()
-//                .antMatchers("/searchBike").permitAll()
-//                .antMatchers("/userInfo").permitAll()
-//                .antMatchers("/userEmail").permitAll()
-//                .antMatchers("/home/**").hasAnyAuthority("SUPER", "ADMIN", "CLIENT")
-//                .anyRequest().authenticated()
-//                .and()
-//                // form login
-//                .csrf().disable().formLogin()
-//                .loginPage("/login")
-//                .usernameParameter("email")
-//                .passwordParameter("password")
-//                .defaultSuccessUrl("/home")
-//                .failureUrl("/login?error=true")
-//                .and()
-//                // logout
-//                .logout()
-//                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-//                .logoutSuccessUrl("/").and()
-//                .exceptionHandling()
-//                .accessDeniedPage("/access-denied");
-//    }
-
-//    @Override
-//    public void configure(WebSecurity web) throws Exception {
-//        web.ignoring().antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**");
-//    }
 
 }
 

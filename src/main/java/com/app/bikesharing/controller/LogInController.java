@@ -1,9 +1,9 @@
 package com.app.bikesharing.controller;
 
 
-import com.app.bikesharing.dto.LogInDTO;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -24,7 +24,7 @@ public class LogInController {
     }
 
     @GetMapping(value = "/home")
-    public ModelAndView home(LogInDTO logInDTO) {
+    public ModelAndView home() {
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("home");
@@ -32,5 +32,12 @@ public class LogInController {
         return modelAndView;
     }
 
+    @PostMapping(value = "/logout")
+    public ModelAndView logout() {
 
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("/");
+
+        return modelAndView;
+    }
 }
