@@ -51,12 +51,12 @@ public class SearchServiceImpl implements SearchService {
             throw new InvalidDatesException("End date cannot be before start date",INVALID_DATES);
         }
 
-        if(bikeRepository.findByTypeAndSize(bikeOrderDto.getType(), bikeOrderDto.getSize()) == null) {
+        bikes = bikeRepository.findByTypeAndSize(bikeOrderDto.getType(), bikeOrderDto.getSize());
+
+        if(bikes.size() == 0) {
             throw new NoBikesFoundException("Could not find any bike of selected type and size", NO_BIKES);
         }
 
-
-        bikes = bikeRepository.findByTypeAndSize(bikeOrderDto.getType(), bikeOrderDto.getSize());
 
         bikes = bikes.stream()
                 .filter(bike -> isAvailable(bike, startDate, endDate))

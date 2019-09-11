@@ -1,7 +1,6 @@
 package com.app.bikesharing.controller;
 
 import com.app.bikesharing.dao.AddBikeDAO;
-import com.app.bikesharing.dao.OrderDAO;
 import com.app.bikesharing.dto.BikeOrderDto;
 import com.app.bikesharing.dto.OrderDTO;
 import com.app.bikesharing.exceptions.InvalidDatesException;
@@ -13,7 +12,6 @@ import com.app.bikesharing.service.BikeService;
 import com.app.bikesharing.service.SearchService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,6 +23,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -53,6 +52,7 @@ public class SearchController {
 
     @PostMapping(value = "/searchBike")
     public String searchSubmit(Model model, @ModelAttribute("bikeOrderDto") BikeOrderDto bikeOrderDto) {
+       bikes = new ArrayList<>();
         try {
             bikes = searchService.findAvailableBikes(bikeOrderDto);
         } catch (InvalidDatesException e) {

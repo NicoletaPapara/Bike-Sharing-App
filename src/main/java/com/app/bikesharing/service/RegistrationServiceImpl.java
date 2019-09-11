@@ -35,6 +35,7 @@ public class RegistrationServiceImpl implements RegistrationService{
 
 
         userDAO.save(user);
+       
 
     }
 
