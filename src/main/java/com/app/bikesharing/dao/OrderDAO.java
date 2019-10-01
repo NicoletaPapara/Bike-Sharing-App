@@ -9,4 +9,7 @@ import java.util.List;
 @Repository
 public interface OrderDAO extends CrudRepository<Order, Integer> {
     List<Order> findByBikeId(int id);
- }
+
+    @Override
+    <S extends Order> S save(S s);
+}

@@ -12,6 +12,8 @@ public class OrderDTO {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date endDate;
 
+    public OrderDTO(){}
+
     public OrderDTO(int bikeId, Date startDate, Date endDate) {
         this.bikeId = bikeId;
         this.startDate = startDate;

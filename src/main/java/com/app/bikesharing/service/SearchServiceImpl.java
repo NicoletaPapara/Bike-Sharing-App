@@ -93,7 +93,7 @@ public class SearchServiceImpl implements SearchService {
 
     public void addNewOrder(OrderDTO orderDTO){
         Order order = convertOrderDTOintoOrder(orderDTO);
-        orderDAO.save(order);
+        Order order1 = orderDAO.save(order);
     }
 
     private Order convertOrderDTOintoOrder(OrderDTO orderDTO) {

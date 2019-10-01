@@ -23,7 +23,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -86,10 +89,23 @@ public class SearchController {
 
     @PostMapping(value = "/selectBike")
     public String selectBike(Model model,
-                             @ModelAttribute("orderDTO") OrderDTO orderDTO) {
+                             @ModelAttribute("bikeId") int id,
+                             @ModelAttribute("startDate") String startDateS,
+                             @ModelAttribute("endDate") String endDateS) throws ParseException {
         String authenticatedEmailAddress = SecurityContextHolder.getContext().getAuthentication().getName();
+
         User user = bikeService.findUserByEmail(authenticatedEmailAddress);
+
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+
+        Date startDate = formatter.parse(startDateS);
+        Date endDate = formatter.parse(endDateS);
+
+        OrderDTO orderDTO = new OrderDTO();
         orderDTO.setOwnerId(user.getId());
+        orderDTO.setBikeId(id);
+        orderDTO.setStartDate(startDate);
+        orderDTO.setEndDate(endDate);
         searchService.addNewOrder(orderDTO);
         model.addAttribute("owner", user);
         return "ownerDetails";
